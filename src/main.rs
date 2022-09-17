@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fs::File;
+
+mod bin;
 // enum with types
 #[derive(Debug)]
 enum GenderCategory {
@@ -33,6 +35,36 @@ impl Printable for Book {
 }
 
 fn main() {
+    // from struct.rs
+
+    let name = String::from("Peter");
+    let age = 28;
+    let peter = bin::Person { name, age };
+    println!("{:?}", peter);
+    let point: bin::Point = bin::Point { x: 10.0, y: 10.0 };
+    println!("Point coordinates x: {}, y: {}", point.x, point.y);
+    let bottom_right = bin::Point { x: 5.2, ..point };
+    println!(
+        "bottom_right coordinates x: {}, y: {}",
+        bottom_right.x, bottom_right.y
+    );
+    let bin::Point {
+        x: left_edge,
+        y: top_edge,
+    } = point;
+    let _rectangle = bin::Rectangle {
+        top_left: bin::Point {
+            x: left_edge,
+            y: top_edge,
+        },
+        bottom_right,
+    };
+    let _unit = bin::Unit;
+    let pair = bin::Pair(1, 0.1);
+    println!("pair of first {}, second {}", pair.0, pair.1);
+    let bin::Pair(_integer, _decimal) = pair;
+    println!("pair : ({}, {})", _integer, _decimal);
+    // end of struct.rs
     let p1 = GenderCategory::Name(String::from("lim"));
     let p2 = GenderCategory::UsrId(10);
     match p1 {
@@ -57,12 +89,12 @@ fn main() {
 
     // map is a collection of key-value pairs (aka entries)
     // Hashmap stores keys and values in hash table.
-    let mut statesCode = HashMap::new();
-    statesCode.insert("KL", "Kerala");
-    statesCode.insert("MH", "Mahashtra");
-    println!("size of map is {:?}", statesCode);
+    let mut states_code = HashMap::new();
+    states_code.insert("KL", "Kerala");
+    states_code.insert("MH", "Mahashtra");
+    println!("size of map is {:?}", states_code);
 
-    match statesCode.get(&"KL") {
+    match states_code.get(&"KL") {
         Some(value) => {
             println!("Value of key KL is {}", value);
         }
@@ -70,10 +102,10 @@ fn main() {
             println!("nothing found");
         }
     }
-    for (key, val) in statesCode.iter() {
+    for (key, val) in states_code.iter() {
         println!("key: {} , val: {}", key, val);
     }
-    if statesCode.contains_key(&"KL") {
+    if states_code.contains_key(&"KL") {
         println!("statesCode contains KL");
     }
     let mut names = HashSet::new();
