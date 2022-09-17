@@ -117,4 +117,10 @@ fn main() {
     let var_i32: i32 = 10;
     let b = Box::new(var_i32);
     println!("smart pointer value : {}", *b == var_i32);
+    // primitives from lust-lang example
+    let logical: bool = true;
+    let a_float: f64 = 1.0;
+    let an_integer = 5i32;
+    let mut mutable = 12;
+    mutable = 21;
 }
