@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fs::File;
 
-mod bin;
+mod my;
 // enum with types
 #[derive(Debug)]
 enum GenderCategory {
@@ -39,30 +39,30 @@ fn main() {
 
     let name = String::from("Peter");
     let age = 28;
-    let peter = bin::Person { name, age };
+    let peter = my::my::Person { name, age };
     println!("{:?}", peter);
-    let point: bin::Point = bin::Point { x: 10.0, y: 10.0 };
+    let point: my::my::Point = my::my::Point { x: 10.0, y: 10.0 };
     println!("Point coordinates x: {}, y: {}", point.x, point.y);
-    let bottom_right = bin::Point { x: 5.2, ..point };
+    let bottom_right = my::my::Point { x: 5.2, ..point };
     println!(
         "bottom_right coordinates x: {}, y: {}",
         bottom_right.x, bottom_right.y
     );
-    let bin::Point {
+    let my::my::Point {
         x: left_edge,
         y: top_edge,
     } = point;
-    let _rectangle = bin::Rectangle {
-        top_left: bin::Point {
+    let _rectangle = my::my::Rectangle {
+        top_left: my::my::Point {
             x: left_edge,
             y: top_edge,
         },
         bottom_right,
     };
-    let _unit = bin::Unit;
-    let pair = bin::Pair(1, 0.1);
+    let _unit = my::my::Unit;
+    let pair = my::my::Pair(1, 0.1);
     println!("pair of first {}, second {}", pair.0, pair.1);
-    let bin::Pair(_integer, _decimal) = pair;
+    let my::my::Pair(_integer, _decimal) = pair;
     println!("pair : ({}, {})", _integer, _decimal);
     // end of struct.rs
     let p1 = GenderCategory::Name(String::from("lim"));
