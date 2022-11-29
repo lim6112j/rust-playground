@@ -12,9 +12,14 @@ impl<T> Deref for MyBox<T> {
         &self.0
     }
 }
+fn hello(name : &str) {
+    println!("hello, {name}!");
+}
 fn main() {
     let x = 5;
     let y = MyBox::new(x);
     assert_eq!(5, x);
     assert_eq!(5, *y);
+    let m = MyBox::new(String::from("Rust"));
+    hello(&m); // &String to &str auto conversion through deref coersion -- MyBox(String) -> &String -> &str
 }
