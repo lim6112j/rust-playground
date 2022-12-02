@@ -2,7 +2,7 @@
 use std::ops::Deref;
 struct MyBox<T>(T);
 impl<T> MyBox<T> {
-    fn new (x: T) -> MyBox<T> {
+    fn new(x: T) -> MyBox<T> {
         MyBox(x)
     }
 }
@@ -12,7 +12,7 @@ impl<T> Deref for MyBox<T> {
         &self.0
     }
 }
-fn hello(name : &str) {
+fn hello(name: &str) {
     println!("hello, {name}!");
 }
 fn main() {
