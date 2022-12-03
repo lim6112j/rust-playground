@@ -43,10 +43,10 @@ fn main() {
     let user_pref2 = None;
     let giveaway2 = store.giveaway(user_pref2);
     println!(
-    "The user with preference {:?} gets {:?}",
+        "The user with preference {:?} gets {:?}",
         user_pref2, giveaway2
     );
-    let _expensive_closure =  |num: u32| -> u32 {
+    let _expensive_closure = |num: u32| -> u32 {
         println!("calculating slowly...");
         thread::sleep(Duration::from_secs(2));
         num
@@ -56,13 +56,18 @@ fn main() {
     // let n = example_closure(5);
     //println!("string to example closure : {}", n);
 
-    let list: Vec<i32> = vec![1,2,3];
+    let list: Vec<i32> = vec![1, 2, 3];
     let only_borrow = || println!("From closure: {:?}", list);
     only_borrow();
-    let mut list2 = vec![4,5,6];
+    let mut list2 = vec![4, 5, 6];
     let mut borrow_mutably = || list2.push(7);
     borrow_mutably();
-    thread::spawn(move || println!("From thread - closure take ownership of variable: {:?}", list))
+    thread::spawn(move || {
+        println!(
+            "From thread - closure take ownership of variable: {:?}",
+            list
+        )
+    })
     .join()
-        .unwrap();
+    .unwrap();
 }
