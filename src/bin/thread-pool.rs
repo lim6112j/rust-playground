@@ -5,7 +5,7 @@ let n_workers = 4;
 let n_jobs = 8;
 let pool = ThreadPool::new(n_workers);
 
-let (rx, tx) = channel();
+let (tx, rx) = channel();
 
 for _ in 0..n_jobs {
     let tx = tx.clone();
